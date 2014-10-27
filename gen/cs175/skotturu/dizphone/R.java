@@ -1077,18 +1077,21 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int brush_teeth=0x7f020057;
+        public static final int ic_launcher=0x7f020058;
+        public static final int spike=0x7f020059;
+        public static final int wake_up=0x7f02005a;
     }
     public static final class id {
-        public static final int CurrentScore=0x7f05004d;
-        public static final int GameLabel=0x7f05004b;
-        public static final int GameOver=0x7f050040;
-        public static final int GameSpeedLabel=0x7f050046;
-        public static final int HighScore=0x7f050049;
-        public static final int LeftButton=0x7f05004c;
-        public static final int LivesLeft=0x7f05004e;
-        public static final int RightButton=0x7f05004a;
-        public static final int SeekBarMidWay=0x7f050045;
+        public static final int CurrentScore=0x7f05005a;
+        public static final int GameLabel=0x7f050058;
+        public static final int GameOver=0x7f05004e;
+        public static final int GameSpeedLabel=0x7f050053;
+        public static final int HighScore=0x7f050056;
+        public static final int LeftButton=0x7f050059;
+        public static final int LivesLeft=0x7f05005b;
+        public static final int RightButton=0x7f050057;
+        public static final int SeekBarMidWay=0x7f050052;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1100,27 +1103,35 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f05004f;
+        public static final int action_settings=0x7f05005c;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
+        public static final int brush=0x7f050043;
+        public static final int button1=0x7f05003d;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f050028;
         public static final int dialog=0x7f05000e;
         public static final int disableHome=0x7f050008;
         public static final int dropdown=0x7f05000f;
-        public static final int edit_player_name=0x7f050041;
+        public static final int editText1=0x7f05003f;
+        public static final int edit_player_name=0x7f05004f;
         public static final int edit_query=0x7f050030;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
-        public static final int game_speed_slider=0x7f050047;
+        public static final int game1=0x7f05004d;
+        public static final int game2=0x7f05004c;
+        public static final int game2TextView=0x7f050046;
+        public static final int game3=0x7f05004b;
+        public static final int game_speed_slider=0x7f050054;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
+        public static final int imageView1=0x7f050045;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
         public static final int middle=0x7f050012;
@@ -1130,8 +1141,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int relativeLayout1=0x7f050044;
-        public static final int return_button=0x7f050043;
+        public static final int relativeLayout1=0x7f050051;
+        public static final int return_button=0x7f050050;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1142,19 +1153,24 @@ containing a value of this type.
         public static final int search_plate=0x7f050036;
         public static final int search_src_text=0x7f050037;
         public static final int search_voice_btn=0x7f05003b;
-        public static final int settings_button=0x7f05003c;
+        public static final int seekBar1=0x7f05003c;
+        public static final int settings_button=0x7f050047;
         public static final int shortcut=0x7f05002e;
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
+        public static final int spike=0x7f050044;
         public static final int split_action_bar=0x7f05001e;
-        public static final int start_game1_button=0x7f05003f;
-        public static final int start_game2_button=0x7f05003e;
-        public static final int start_game3_button=0x7f05003d;
-        public static final int start_game_portrait=0x7f050048;
+        public static final int start_game1_button=0x7f05004a;
+        public static final int start_game2_button=0x7f050049;
+        public static final int start_game3_button=0x7f050048;
+        public static final int start_game_portrait=0x7f050055;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int textView1=0x7f050042;
+        public static final int textView1=0x7f050040;
+        public static final int textView2=0x7f05003e;
+        public static final int textView3=0x7f050041;
+        public static final int textView4=0x7f050042;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1185,6 +1201,16 @@ containing a value of this type.
          showAsAction="ifRoom" items can fit. "always" items can override this. 
          */
         public static final int abc_max_action_buttons=0x7f090000;
+        public static final int default_game_speed=0x7f090001;
+        public static final int game_over_waiting=0x7f090004;
+        /**  milloin second 
+         */
+        public static final int max_game_speed=0x7f090002;
+        public static final int max_lives=0x7f090006;
+        /**  10 second 
+         */
+        public static final int max_seekbar=0x7f090005;
+        public static final int min_game_speed=0x7f090003;
     }
     public static final class layout {
         public static final int abc_action_bar_decor=0x7f030000;
@@ -1211,11 +1237,16 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_main=0x7f030018;
-        public static final int game_over=0x7f030019;
-        public static final int settings=0x7f03001a;
-        public static final int start_game_portrait=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int accout_setup_layout=0x7f030018;
+        public static final int activity_game=0x7f030019;
+        public static final int activity_game_2=0x7f03001a;
+        public static final int activity_main=0x7f03001b;
+        public static final int game_layout=0x7f03001c;
+        public static final int game_over=0x7f03001d;
+        public static final int score_layout=0x7f03001e;
+        public static final int settings=0x7f03001f;
+        public static final int start_game_portrait=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -1284,14 +1315,44 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a0013;
         public static final int app_name=0x7f0a000d;
+        public static final int brush=0x7f0a002b;
         /**  Save Settings Dialog Alert Box 
          */
         public static final int cancel=0x7f0a001d;
+        public static final int default_header=0x7f0a0035;
+        /**  default 
+         */
+        public static final int default_name=0x7f0a0037;
+        public static final int dsiplayScore=0x7f0a002e;
+        public static final int game2=0x7f0a0033;
+        public static final int game2TextView=0x7f0a002f;
+        public static final int game3=0x7f0a0034;
         public static final int hello_world=0x7f0a001c;
         public static final int save=0x7f0a001e;
         public static final int saveq=0x7f0a001f;
         public static final int savesettings=0x7f0a0020;
+        public static final int spike=0x7f0a002c;
+        public static final int text_Brush=0x7f0a003d;
+        public static final int text_Portrait=0x7f0a003b;
+        public static final int text_Spike=0x7f0a003c;
+        public static final int text_game_over=0x7f0a002d;
+        public static final int text_game_speed=0x7f0a0027;
+        public static final int text_high_score=0x7f0a0029;
+        public static final int text_i_am_there=0x7f0a0036;
+        public static final int text_landscape=0x7f0a003a;
+        public static final int text_lives=0x7f0a002a;
+        public static final int text_player_name=0x7f0a0026;
+        /**  button 
+         */
+        public static final int text_return=0x7f0a0030;
+        public static final int text_save_question=0x7f0a0039;
+        public static final int text_score=0x7f0a0028;
+        public static final int text_settings=0x7f0a0031;
+        public static final int text_start_game=0x7f0a0032;
         public static final int title_activity_setting=0x7f0a001b;
+        /**  text 
+         */
+        public static final int unit_second=0x7f0a0038;
     }
     public static final class style {
         /** 

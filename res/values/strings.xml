@@ -33,4 +33,50 @@
     <string name="RightButton">Right</string>
     <string name="LeftButton">Left</string>
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  	<string name="text_player_name">Player Name</string>
+    <string name="text_game_speed">Game Speed</string>
+    <string name="text_score">Score:</string>
+	<string name="text_high_score">High:</string>
+	<string name="text_lives">Lives:</string>
+	<string name ="brush"> Brush</string>
+	<string name ="spike"> Spike</string>
+	<string name="text_game_over">Game Over</string>
+	<string name="dsiplayScore">Game highest score display here</string>
+    <string name="game2TextView"> </string>
+    <!-- button -->
+	<string name="text_return">Return</string>
+	<string name="text_settings">Settings</string>
+	<string name="text_start_game">Game 1</string>
+	<string name="game2">Game2</string>
+	<string name="game3">Game3</string>
+	<string name="default_header"> Hedaer image</string>
+	<string name="text_i_am_there">I\'m there</string>
+	
+	
+	
+    <!-- default -->
+    <string name="default_name">Player1</string>
+    
+    
+    <!-- text -->
+    <string name="unit_second">second</string>
+    <string name="text_save_question">Do you want to save changing?</string>
+	<string name="text_landscape">Landscape</string>
+    <string name="text_Portrait">Portrait</string>
+    <string name="text_Spike">Spike</string>
+    <string name="text_Brush">Brush</string>
+    
+    
 </resources>
