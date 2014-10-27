@@ -25,6 +25,7 @@ public class StartGameActivity extends Activity {
 	Button right_button;
 	Button left_button;
 	SharedPreferences.Editor editor;
+	Scores score;
 	private Runnable run = new Runnable(){
 	    public void run(){
 	        //do something
@@ -39,13 +40,12 @@ public class StartGameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 		editor = sharedPref.edit();
+		score = new Scores(sharedPref, editor, getString(R.string.HighScore), getString(R.string.CurrentScore), getString(R.string.LivesLeft));
+		
 		displ = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();		
 
 		setContentView(R.layout.start_game_portrait);
 		
-		LinearLayout myll = (LinearLayout) findViewById(R.id.start_game_portrait);
-		myll.setOrientation(LinearLayout.VERTICAL);
-	
 		display();
 
 		start();
@@ -56,11 +56,7 @@ public class StartGameActivity extends Activity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 	    super.onConfigurationChanged(newConfig);
-		int rotation = displ.getRotation();
-		LinearLayout myll = (LinearLayout) findViewById(R.id.start_game_portrait);
 		display();
-		
-		
 	}
 
 	public void addListenerOnButton() {
@@ -102,14 +98,14 @@ public class StartGameActivity extends Activity {
 		
 		if(getInstruction() && guess.equals("right"))
 		{
-			incCurrentScore();
+			score.incCurrentScore();
 		}
 		else if (!getInstruction() && guess.equals("left"))
 		{
-			incCurrentScore();
+			score.incCurrentScore();
 		}
 		else
-			decLives();
+			score.decLives();
 	}
 	
 	private void guess() {
@@ -121,32 +117,27 @@ public class StartGameActivity extends Activity {
 		}
 		else
 		{
-			savescores();
+			score.savescores();
 			//start intent GameOver
-			reset();
+			score.reset();
 			Intent intent = new Intent(context, GameOverActivity.class);
 			startActivity(intent);
 			finish();
 		}
 	}
 
-	private void reset() {
-		setLives(3);
-		setCurrentScore(0);
-	}
-
 	private void display() {
 		//display HighScore
 		TextView highScore = (TextView) findViewById(R.id.HighScore);
-		highScore.setText(getString(R.string.HighScore) + getHighScore());
+		highScore.setText(getString(R.string.HighScore) + score.getHighScore());
 		
 		//display CurrentScore
 		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
-		currentScore.setText(getString(R.string.CurrentScore) + getCurrentScore());
+		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());
 		
 		//display lives left
 		TextView lives = (TextView) findViewById(R.id.LivesLeft);
-		lives.setText(getString(R.string.LivesLeft) + getLives());
+		lives.setText(getString(R.string.LivesLeft) + score.getLives());
 		
 		//display game label
 		TextView game = (TextView) findViewById(R.id.GameLabel);
@@ -162,61 +153,14 @@ public class StartGameActivity extends Activity {
 	}
 
 	private boolean keepgoing() {
-		if(getLives() < 1)
+		if(score.getLives() < 1)
 			return false;
 		else
 			return true;
 	}
 	
-	private void savescores() {
-		int current = getCurrentScore();
-		int high = getHighScore();
-		
-		if(current > high)
-    	   	setHighScore(current);
-	}
 	
-	private int getHighScore() {
-		return sharedPref.getInt(getString(R.string.HighScore), 0);
-	}
-	
-	private void setHighScore(int score) {
-	   	editor.putInt(getString(R.string.HighScore), score);
-   		editor.commit();
-	}
-	
-	private void incCurrentScore() {
-		int current = getCurrentScore();
-		current++;
-		setCurrentScore(current);
-	}
 
-
-	private int getCurrentScore() {
-		return sharedPref.getInt(getString(R.string.CurrentScore), 0);
-	}
-	
-	private void setCurrentScore(int score) {
-	   	editor.putInt(getString(R.string.CurrentScore), score);
-   		editor.commit();
-	}
-	
-	private void decLives() {
-		int live = getLives();
-		live--;
-		setLives(live);
-	}
-
-
-	private int getLives() {
-		return sharedPref.getInt(getString(R.string.LivesLeft), 3);
-	}
-	
-	private void setLives(int live) {
-	   	editor.putInt(getString(R.string.LivesLeft), live);
-   		editor.commit();
-	}
-	
 	private long getGameSpeed() {
 		return (long) sharedPref.getFloat(getString(R.string.SettingsSeekBarMidWay), (float) 1.0) * 1000;
 	}
