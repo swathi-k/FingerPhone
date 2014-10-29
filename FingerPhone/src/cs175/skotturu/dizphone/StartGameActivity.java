@@ -40,7 +40,7 @@ public class StartGameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 		editor = sharedPref.edit();
-		score = new Scores(sharedPref, editor, getString(R.string.HighScore) + "Game3", getString(R.string.CurrentScore)+ "Game3", getString(R.string.LivesLeft)+ "Game3");
+		score = new Scores(sharedPref, editor, getString(R.string.HighScore) + "Game3", getString(R.string.CurrentScore)+ "Game3");
 		
 		displ = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();		
 

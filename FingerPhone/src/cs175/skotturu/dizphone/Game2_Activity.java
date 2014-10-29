@@ -3,10 +3,7 @@ package cs175.skotturu.dizphone;
 import java.util.Random;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,7 +16,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GameActivity extends Activity 
+
+
+/**
+ * The game controller
+ */
+public class Game2_Activity extends Activity 
 		implements OnClickListener {
 	final int PORTRAIT=0;
 	final int LANDSCAPE=1;
@@ -37,8 +39,7 @@ public class GameActivity extends Activity
 	private TextView textOrientation;
 	private boolean hitting; //true: the player click a right Orientation, else false
 	private boolean clickDone; //click the "I'm here" button or not
-	SharedPreferences sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
-	Editor editor = sharedPref.edit();	
+	
 	private Handler handler= new Handler();
 	
 	/**
@@ -85,7 +86,7 @@ public class GameActivity extends Activity
 	@Override
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_game);
+       setContentView(R.layout.activity_game_2);
        init();
        gameStart();
 	}
@@ -98,8 +99,15 @@ public class GameActivity extends Activity
 		textHigh=(TextView)findViewById(R.id.textView2);
 		textLives=(TextView)findViewById(R.id.textView3);
 		textOrientation=(TextView)findViewById(R.id.textView4);
-		Button button1=(Button) findViewById(R.id.button1);
-		button1.setOnClickListener(this);
+		Button button1=(Button) findViewById(R.id.game2);
+		button1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 setContentView(R.layout.activity_game_2);
+				
+			}
+		});
 		
 		//initialize variable
 		lives=getResources().getInteger(R.integer.max_lives);
@@ -109,11 +117,14 @@ public class GameActivity extends Activity
 		speed=getResources().getInteger(R.integer.default_game_speed);
 		hitting=false;
 		//load highScore, speed from database
-		
-		Scores score = new Scores(sharedPref, editor, "", "", "");
-		
-		highScore = score.getHighScore();
-		//speed = score.getSpeed();
+		MyDb zck=new MyDb(this);
+		db=zck.getWritableDatabase();
+		Cursor cursor=db.query("hw2", null, null, null, null, null, null);
+		if(cursor.moveToNext()){
+			highScore=cursor.getInt(cursor.getColumnIndex("high"));
+			speed=cursor.getInt(cursor.getColumnIndex("speed"));
+		}
+		cursor.close();
 		
 	}
 	
@@ -182,7 +193,7 @@ public class GameActivity extends Activity
    	{
        /* handle the case coming from thing on our Activity with id button 
        */
-   	case R.id.game1: 
+   	case R.id.game2: 
    		//only allow once
    		if(!clickDone){
    			clickDone=true;
