@@ -40,7 +40,10 @@ public class StartGameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 		editor = sharedPref.edit();
-		score = new Scores(sharedPref, editor, getString(R.string.HighScore) + "Game3", getString(R.string.CurrentScore)+ "Game3");
+		
+		TextView name = (TextView) findViewById(R.id.editText1);
+		
+		score = new Scores(sharedPref, editor, name.getText() + "", "Game3");
 		
 		displ = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();		
 
@@ -127,10 +130,6 @@ public class StartGameActivity extends Activity {
 	}
 
 	private void display() {
-		//display HighScore
-		TextView highScore = (TextView) findViewById(R.id.HighScore);
-		highScore.setText(getString(R.string.HighScore) + score.getHighScore());
-		
 		//display CurrentScore
 		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
 		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());

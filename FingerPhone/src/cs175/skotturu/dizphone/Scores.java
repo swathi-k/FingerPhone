@@ -12,29 +12,22 @@ import android.content.SharedPreferences;
 public class Scores {
 	SharedPreferences sharedPref;
 	SharedPreferences.Editor editor;
-	String highscore;
 	String currentscore;
 	String livescore;
 	String port;
 	String ip;
+	String username;
+	String gamename;
 	
 	public Scores(SharedPreferences sp, SharedPreferences.Editor e, String name, String gamename) {
 		this.sharedPref = sp;
 		this.editor = e;
-		this.highscore = "HighScore";
 		this.currentscore = "CurrentScore";
 		this.livescore = "LiveScore";
+		this.username = name;
+		this.gamename = gamename;
 		this.port = "7890";
 		this.ip = "";	//this ip
-	}
-	
-	public int getHighScore() {
-		return sharedPref.getInt(highscore, 0);
-	}
-	
-	public void setHighScore(int score) {
-	   	editor.putInt(highscore, score);
-   		editor.commit();
 	}
 	
 	public int getCurrentScore() {
@@ -58,8 +51,6 @@ public class Scores {
 	public void savescores() {
 		int current = getCurrentScore();
 		
-		if(current > getHighScore())
-    	   	setHighScore(current);
 	}
 
 	public void incCurrentScore() {

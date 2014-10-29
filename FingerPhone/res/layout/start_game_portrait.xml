@@ -10,13 +10,6 @@
     tools:context="cs175.skotturu.dizphone.MainActivity"
     >
 
-    <TextView
-        android:id="@+id/HighScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="@string/HighScore" />
-
     <Button
         android:id="@+id/RightButton"
         android:layout_width="wrap_content"
