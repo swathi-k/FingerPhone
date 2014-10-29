@@ -44,7 +44,7 @@ public void onClick(View v)
 	  	  break;
 	case R.id.game3:
 		//launch the Game Acitivity
-		i = new Intent(this,StartGameActivity.class); 
+		i = new Intent(this,StartGameActivity.class);
 		startActivity(i);
   	  	break;
 	}

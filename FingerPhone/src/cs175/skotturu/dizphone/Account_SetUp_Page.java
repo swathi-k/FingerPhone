@@ -2,7 +2,9 @@ package cs175.skotturu.dizphone;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,10 +23,18 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
 	private SeekBar speedBar;
 	private SQLiteDatabase dbReader;
 	private SQLiteDatabase dbWriter;
+	private SharedPreferences sharedPref;
+	private SharedPreferences.Editor editor;
+
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accout_setup_layout);
+        
+        //set values in preferences
+		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+		editor = sharedPref.edit();
+
         MyDb zck= new MyDb(this);
         dbReader=zck.getReadableDatabase();
         dbWriter=zck.getWritableDatabase();
@@ -41,7 +51,7 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
 	private void init(){
 		
 		//play name
-		playerName=(EditText)findViewById(R.id.editText1);
+		playerName=(EditText)findViewById(R.id.playerName);
 		//speed message
 		speedMessage=(TextView) findViewById(R.id.textView2);
 		// load player data from db
@@ -166,6 +176,9 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
     					saveDBData();
     					dbWriter.close();
     					dbReader.close();
+    					editor.putString("username", playerName.getText()+"");
+    			   		editor.commit();
+    					
     					finish();
     				}
     			})

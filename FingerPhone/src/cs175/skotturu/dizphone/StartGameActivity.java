@@ -14,18 +14,21 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class StartGameActivity extends Activity {
 	SharedPreferences sharedPref;
+	SharedPreferences.Editor editor;
 	Display displ;
 	final Context context = this;
 	private Handler h = new Handler();
 	Button right_button;
 	Button left_button;
-	SharedPreferences.Editor editor;
 	Scores score;
+	String username;
+	
 	private Runnable run = new Runnable(){
 	    public void run(){
 	        //do something
@@ -41,9 +44,10 @@ public class StartGameActivity extends Activity {
 		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 		editor = sharedPref.edit();
 		
-		TextView name = (TextView) findViewById(R.id.editText1);
 		
-		score = new Scores(sharedPref, editor, name.getText() + "", "Game3");
+		username = sharedPref.getString("username", "");
+				
+		score = new Scores(sharedPref, editor, username, "Game3");
 		
 		displ = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();		
 

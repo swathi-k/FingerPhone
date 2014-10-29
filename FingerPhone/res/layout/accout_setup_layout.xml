@@ -35,7 +35,7 @@
         android:text="@string/text_return" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/playerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView2"
@@ -52,7 +52,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
+        android:layout_above="@+id/playerName"
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="38dp"
         android:text="@string/text_player_name"

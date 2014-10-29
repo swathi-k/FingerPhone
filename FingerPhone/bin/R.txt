@@ -238,13 +238,12 @@ int drawable brush_teeth 0x7f020057
 int drawable ic_launcher 0x7f020058
 int drawable spike 0x7f020059
 int drawable wake_up 0x7f02005a
-int id CurrentScore 0x7f050055
-int id GameLabel 0x7f050053
+int id CurrentScore 0x7f050054
+int id GameLabel 0x7f050056
 int id GameOver 0x7f05004a
 int id GameSpeedLabel 0x7f05004f
-int id HighScore 0x7f050056
-int id LeftButton 0x7f050054
-int id LivesLeft 0x7f050057
+int id LeftButton 0x7f050053
+int id LivesLeft 0x7f050055
 int id RightButton 0x7f050052
 int id SeekBarMidWay 0x7f05004e
 int id action_bar 0x7f05001c
@@ -258,7 +257,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050058
+int id action_settings 0x7f050057
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
@@ -270,7 +269,6 @@ int id default_activity_button 0x7f050028
 int id dialog 0x7f05000e
 int id disableHome 0x7f050008
 int id dropdown 0x7f05000f
-int id editText1 0x7f05003f
 int id edit_player_name 0x7f05004b
 int id edit_query 0x7f050030
 int id end 0x7f050013
@@ -293,6 +291,7 @@ int id middle 0x7f050012
 int id never 0x7f050009
 int id none 0x7f050010
 int id normal 0x7f050000
+int id playerName 0x7f05003f
 int id progress_circular 0x7f050018
 int id progress_horizontal 0x7f050019
 int id radio 0x7f05002f

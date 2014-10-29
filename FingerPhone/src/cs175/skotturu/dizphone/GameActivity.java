@@ -110,9 +110,6 @@ public class GameActivity extends Activity
 		hitting=false;
 		//load highScore, speed from database
 		
-		Scores scores = new Scores(sharedPref, editor, "highscore Game", "");
-		
-		highScore = scores.getHighScore();
 		//speed = score.getSpeed();
 		
 	}
