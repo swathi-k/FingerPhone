@@ -36,11 +36,8 @@ public class Game3_Activity extends Activity {
 		editor = sharedPref.edit();
 		
 			
-		username = sharedPref.getString("username", "");
-					
-		score = new Scores(sharedPref, editor);
+		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
 		
-		score.setUserName(username);
 		score.setGameName("Game3");
 
 		setContentView(R.layout.start_game_portrait);
@@ -63,7 +60,6 @@ public class Game3_Activity extends Activity {
 
 		right_button = (Button) findViewById(R.id.RightButton);
 		left_button = (Button) findViewById(R.id.LeftButton);
-		boolean right = false;
 		right_button.setOnClickListener(new OnClickListener() {
 
 			//@Override

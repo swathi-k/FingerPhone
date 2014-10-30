@@ -56,6 +56,7 @@ public class Scores {
 	
 	public void setUserName(String name) {
 		editor.putString(username, name);
+		reset();
    		editor.commit();
 	}
 	
@@ -65,6 +66,7 @@ public class Scores {
 	
 	public void setGameName(String gname) {
 		editor.putString(gamename, gname);
+		reset();
    		editor.commit();
 	}
 	
@@ -74,6 +76,7 @@ public class Scores {
 	
 	public void setGameSpeed(int speed) {
 		editor.putInt(gamespeed, speed);
+		reset();
    		editor.commit();
 	}
 
