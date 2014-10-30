@@ -19,7 +19,7 @@ public class GameOver extends Activity {
         waiting_time=getResources().getInteger(R.integer.game_over_waiting);
         //read the player's score
 		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
-		textScore.setText(score.getCurrentScore());
+		//textScore.setText(score.getCurrentScore());
         
         gameEnd();
 	}
