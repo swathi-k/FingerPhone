@@ -1129,12 +1129,12 @@ containing a value of this type.
         public static final int game1TextView3=0x7f050043;
         public static final int game1TextView4=0x7f050044;
         public static final int game2=0x7f05004d;
-        public static final int game2HighScore2=0x7f050047;
+        public static final int game2HighScore2=0x7f05004a;
         public static final int game2Score2=0x7f050046;
-        public static final int game2TextView2=0x7f050049;
+        public static final int game2TextView2=0x7f050048;
         public static final int game2button2=0x7f05004b;
-        public static final int game2imageView=0x7f05004a;
-        public static final int game2lives2=0x7f050048;
+        public static final int game2imageView=0x7f050049;
+        public static final int game2lives2=0x7f050047;
         public static final int game3=0x7f05004c;
         public static final int home=0x7f050014;
         public static final int homeAsUp=0x7f050005;

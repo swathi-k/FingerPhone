@@ -3,6 +3,7 @@ package com.farjahan.android3;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -31,13 +32,12 @@ public class Game2_Activity extends Activity
 	private int highScore;
 	private int orientation; //0-Portrait, 1-Landscape
 	private int speed; // million second
-	private SQLiteDatabase db;
 	private TextView textLives;
 	private TextView textScore;
-	private TextView textHigh;
 	private TextView textOrientation;
 	private boolean hitting; //true: the player click a right Orientation, else false
 	private boolean clickDone; //click the "I'm here" button or not
+	Scores savedscores;
 	
 	private Handler handler= new Handler();
 	
@@ -96,7 +96,6 @@ public class Game2_Activity extends Activity
 	 */
 	private void init(){
 		textScore=(TextView)findViewById(R.id.game2Score2);
-		textHigh=(TextView)findViewById(R.id.game2HighScore2);
 		textLives=(TextView)findViewById(R.id.game2lives2);
 		textOrientation=(TextView)findViewById(R.id.game2TextView2);
 		Button button1=(Button) findViewById(R.id.game2button2);
@@ -109,15 +108,10 @@ public class Game2_Activity extends Activity
 		speed=getResources().getInteger(R.integer.default_game_speed);
 		hitting=false;
 		//load highScore, speed from database
-		MyDb zck=new MyDb(this);
-		db=zck.getWritableDatabase();
-		Cursor cursor=db.query("hw2", null, null, null, null, null, null);
-		if(cursor.moveToNext()){
-			highScore=cursor.getInt(cursor.getColumnIndex("high"));
-			speed=cursor.getInt(cursor.getColumnIndex("speed"));
-		}
-		cursor.close();
+		savedscores = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
 		
+		speed = savedscores.getGameSpeed();
+		savedscores.setGameName("Game2");
 	}
 	
 	/**
@@ -134,9 +128,9 @@ public class Game2_Activity extends Activity
 	 * load game_over activity
 	 */
 	private void gameOver(){
-		//save highScore, score to database
-		db.execSQL("update hw2 set high="+highScore+", score="+score);
-		db.close();
+		
+		savedscores.setCurrentScore(score);
+		
 		Intent i = new Intent(this, GameOver.class);
 		startActivity(i);
 		finish();
@@ -173,7 +167,6 @@ public class Game2_Activity extends Activity
 	 */
 	private void showMessage(){
 		textScore.setText(getString(R.string.text_score2)+ " "+score);
-		textHigh.setText(getString(R.string.text_high_score2)+ " "+highScore);
 		textLives.setText(getString(R.string.text_lives2)+ " "+lives);
 		if(hitting){
 			//don't show textOrientation
