@@ -1,13 +1,20 @@
 package com.farjahan.android3;
 
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import android.widget.Toast;
 
 
 public class MainActivity extends TabActivity {
+	
+	Scores userName;
+	
+	
 	 TabHost tabHost;
     /** Called when the activity is first created. */
     @Override
@@ -40,6 +47,36 @@ public class MainActivity extends TabActivity {
         tabHost.addTab(accountPage); // Adding Account SetUp tab
         tabHost.addTab(gamePage); // Adding Game tab
         tabHost.addTab(scorePage); // Adding Score tab
-        
+		userName = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
+		String user = userName.getUserName();
+		Log.i("user name", "is: "+ user);
+		if(user.isEmpty()){
+			
+			tabHost.setCurrentTab(3);
+			
+			
+		}else{
+			tabHost.setCurrentTab(1);
+			displayWelcomeMessege();
+		}
+		
+		
+		
+		
+		
     }
+   
+    
+    
+    private void displayWelcomeMessege(){
+		Context context = getApplicationContext();
+		userName = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
+		String user = userName.getUserName();
+    	CharSequence text = user +" Welcome to FingerPhone Game!";
+    	int duration = Toast.LENGTH_LONG;
+
+    	Toast toast = Toast.makeText(context, text, duration);
+    	toast.show();
+	}
+	
 	}

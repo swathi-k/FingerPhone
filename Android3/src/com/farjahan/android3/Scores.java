@@ -51,7 +51,7 @@ public class Scores {
 	}
 	
 	public String getUserName() {
-		return sharedPref.getString(username, "Player 1");
+		return sharedPref.getString(username, "");
 	}
 	
 	public void setUserName(String name) {

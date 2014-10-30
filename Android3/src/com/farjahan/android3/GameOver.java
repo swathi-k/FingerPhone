@@ -18,8 +18,13 @@ public class GameOver extends Activity {
         textScore=(TextView)findViewById(R.id.textView2);
         waiting_time=getResources().getInteger(R.integer.game_over_waiting);
         //read the player's score
+      //textScore.setText(score.getCurrentScore());
 		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
-		//textScore.setText(score.getCurrentScore());
+		
+		int gameScore = score.getCurrentScore();
+		
+		//score=getSharedPreferences.getInt(cursor.getColumnIndex("score"));
+		textScore.setText(getString(R.string.text_score)+ " "+gameScore);
         
         gameEnd();
 	}

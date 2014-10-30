@@ -177,5 +177,3 @@ public class Game3_Activity extends Activity {
 	}
 	
 }
-
-
