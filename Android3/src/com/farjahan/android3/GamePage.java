@@ -36,15 +36,20 @@ public void onClick(View v)
     /* handle the case coming from thing on our Activity with id button 
     */
 	case R.id.game1: 
-      // launch the Game Activity
-  	  i = new Intent(this,GameActivity.class); 
-  	  startActivity(i);
-  	  break;
+		// launch the Game Activity
+  	  	i = new Intent(this,GameActivity.class); 
+  	  	startActivity(i);
+  	  	break;
 	case R.id.game2: 
-	      // launch the Game Activity
-	  	  i = new Intent(this,Game2_Activity.class); 
-	  	  startActivity(i);
-	  	  break;
+	    // launch the Game Activity
+	  	i = new Intent(this,Game2_Activity.class); 
+	  	startActivity(i);
+	  	break;
+	case R.id.game3:
+		//launch the Game Activity
+	  	i = new Intent(this,Game3_Activity.class); 
+	  	startActivity(i);
+	  	break;
   	 
 	}
 }

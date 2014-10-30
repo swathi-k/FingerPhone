@@ -44,5 +44,15 @@
     <string name="text_Portrait">Portrait</string>
     <string name="text_Spike">Spike</string>
     <string name="text_Brush">Brush</string>
+    
+    
+    <!-- Game 3 -->
+    <string name="CurrentScore">Current Score: </string>
+    <string name="HighScore">High Score: </string>
+    <string name="LivesLeft">Lives Left: </string>
+    <string name="RightButton">Right</string>
+    <string name="LeftButton">Left</string>
+    <string name="GameLabel1">Click on Right!</string>
+    
 
 </resources>

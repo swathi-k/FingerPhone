@@ -40,6 +40,13 @@
         
         <!--  Photos Activity -->
         <activity android:name=".Account_SetUp_Page"  />
+        
+        
+        
+        <activity android:name=".Scores" />
+        <activity android:name=".Game3_Activity" 
+              android:label="@string/app_name" >
+            </activity>
     </application>
 
 </manifest>
