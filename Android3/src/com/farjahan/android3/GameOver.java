@@ -1,6 +1,7 @@
 package com.farjahan.android3;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,8 +10,8 @@ import android.widget.TextView;
 
 public class GameOver extends Activity {
 	private int waiting_time;
-	private SQLiteDatabase db;
 	private TextView textScore;
+	Scores score;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,16 +20,9 @@ public class GameOver extends Activity {
         textScore=(TextView)findViewById(R.id.textView2);
         waiting_time=getResources().getInteger(R.integer.game_over_waiting);
         //read the player's score
-        MyDb zck=new MyDb(this);
-        db=zck.getReadableDatabase();
-        Cursor cursor=db.query("hw2", null, null, null, null, null, null);
-		if(cursor.moveToNext()){
-			int score=cursor.getInt(cursor.getColumnIndex("score"));
-			textScore.setText(getString(R.string.text_score)+ " "+score);
-		}
-		cursor.close();
-		db.close();
-		zck.close();
+		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
+		textScore.setText(score.getCurrentScore());
+        
         gameEnd();
 	}
 
