@@ -26,39 +26,36 @@ public class Game3_Activity extends Activity {
 	        //do something
 	    	guess();
 	    	playerguess("");
+	        
 	    }
 	};
-	    
+	
 	@Override 
-	protected void onCreate(Bundle savedInstanceState) { 
+	public void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
 		editor = sharedPref.edit();
 		
-			
-		username = sharedPref.getString("username", "");
-					
-		score = new Scores(sharedPref, editor);
 		
-		score.setUserName(username);
-		score.setGameName("Game3");
-
+		username = sharedPref.getString("username", "");
+				
+		score = new Scores(sharedPref, editor, username, "Game3");
+		
 		setContentView(R.layout.start_game_portrait);
-			
+		
 		display();
 
 		start();
 		h.postDelayed(run, getGameSpeed());
-		
+	
 	}
-
 	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 	    super.onConfigurationChanged(newConfig);
 		display();
 	}
-	
+
 	public void addListenerOnButton() {
 
 		right_button = (Button) findViewById(R.id.RightButton);
@@ -74,8 +71,6 @@ public class Game3_Activity extends Activity {
 				guess();	//right button clicked
 				//h.postDelayed(run, getGameSpeed());
 			}
-
-			
 		});
 		left_button.setOnClickListener(new OnClickListener() {
 
@@ -88,26 +83,13 @@ public class Game3_Activity extends Activity {
 			}
 		});
 	}
-
+	
 	private void start() {
-			display();
-			addListenerOnButton();
+		display();
+		addListenerOnButton();
 	}
-
-	private void display() {
-		//display CurrentScore
-		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
-		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());
-		
-		//display lives left
-		TextView lives = (TextView) findViewById(R.id.LivesLeft);
-		lives.setText(getString(R.string.LivesLeft) + score.getLives());
-		
-		//display game label
-		TextView game = (TextView) findViewById(R.id.GameLabel);
-   		game.setText(getGameLabel());
-	}
-
+	
+	
 	private void playerguess(String guess)
 	{
 		
@@ -123,15 +105,6 @@ public class Game3_Activity extends Activity {
 			score.decLives();
 	}
 	
-	private boolean getInstruction() {
-		//@TODO change "Portrait" to enum
-		if(getGameLabel().equals("Click on Right"))
-			return true;
-		else
-			return false;
-	}
-
-
 	private void guess() {
 		if(keepgoing())
 		{
@@ -150,6 +123,27 @@ public class Game3_Activity extends Activity {
 		}
 	}
 
+	private void display() {
+		//display CurrentScore
+		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
+		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());
+		
+		//display lives left
+		TextView lives = (TextView) findViewById(R.id.LivesLeft);
+		lives.setText(getString(R.string.LivesLeft) + score.getLives());
+		
+		//display game label
+		TextView game = (TextView) findViewById(R.id.GameLabel);
+   		game.setText(getGameLabel());
+	}
+	
+	private boolean getInstruction() {
+		//@TODO change "Portrait" to enum
+		if(getGameLabel().equals("Click on Right"))
+			return true;
+		else
+			return false;
+	}
 
 	private boolean keepgoing() {
 		if(score.getLives() < 1)
@@ -157,6 +151,8 @@ public class Game3_Activity extends Activity {
 		else
 			return true;
 	}
+	
+	
 
 	private int getGameSpeed() {
 		return 1000;
@@ -179,7 +175,6 @@ public class Game3_Activity extends Activity {
    		TextView game = (TextView) findViewById(R.id.GameLabel);
    		game.setText(orien);
 	}
-	
 }
 
 

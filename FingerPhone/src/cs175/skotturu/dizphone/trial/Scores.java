@@ -18,16 +18,14 @@ public class Scores {
 	String ip;
 	String username;
 	String gamename;
-	String gamespeed;
 	
-	public Scores(SharedPreferences sp, SharedPreferences.Editor e) {
+	public Scores(SharedPreferences sp, SharedPreferences.Editor e, String name, String gamename) {
 		this.sharedPref = sp;
 		this.editor = e;
 		this.currentscore = "CurrentScore";
 		this.livescore = "LiveScore";
-		this.username = "Name";
-		this.gamename = "GameName";
-		this.gamespeed = "Speed";
+		this.username = name;
+		this.gamename = gamename;
 		this.port = "7890";
 		this.ip = "";	//this ip
 	}
@@ -47,33 +45,6 @@ public class Scores {
 
 	public void setLives(int live) {
 	   	editor.putInt(livescore, live);
-   		editor.commit();
-	}
-	
-	public String getUserName() {
-		return sharedPref.getString(username, "Player 1");
-	}
-	
-	public void setUserName(String name) {
-		editor.putString(username, name);
-   		editor.commit();
-	}
-	
-	public String getGameName() {
-		return sharedPref.getString(gamename, "none");
-	}
-	
-	public void setGameName(String gname) {
-		editor.putString(gamename, gname);
-   		editor.commit();
-	}
-	
-	public int getGameSpeed() {
-		return sharedPref.getInt(gamespeed, 1000);
-	}
-	
-	public void setGameSpeed(int speed) {
-		editor.putInt(gamespeed, speed);
    		editor.commit();
 	}
 

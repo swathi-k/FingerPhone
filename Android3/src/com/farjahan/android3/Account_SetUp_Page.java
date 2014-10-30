@@ -2,8 +2,10 @@ package com.farjahan.android3;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,16 +22,13 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
 	private EditText playerName;
 	private TextView speedMessage;
 	private SeekBar speedBar;
-	private SQLiteDatabase dbReader;
-	private SQLiteDatabase dbWriter;
+	Scores score;
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.accout_setup_layout);
-        MyDb zck= new MyDb(this);
-        dbReader=zck.getReadableDatabase();
-        dbWriter=zck.getWritableDatabase();
-        
+		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
+		
         init();
         speedBar.setOnSeekBarChangeListener(this);
         View button = this.findViewById(R.id.button1);
@@ -68,26 +67,18 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
 	 */
 	private void loadDBData(){
 		
-		Cursor cursor=dbReader.query("hw2",null,null,null,null,null,null);
-		if(cursor.moveToNext()){
-			playerName.setText(cursor.getString(cursor.getColumnIndex("name")));
-			speed=cursor.getInt(cursor.getColumnIndex("speed"));
-		}
-		else{
-			//playerName.setText(R.string.default_name);
-			//speed=getResources().getInteger(R.integer.default_game_speed);
-			// insert the values to database
-			String sql="insert into hw2 values ('"+playerName.getText()+"', "+ speed+", 0, 0)";
-			dbWriter.execSQL(sql);
-		}
-		cursor.close();
+		playerName.setText(score.getUserName());
+		speed = score.getGameSpeed();
+		
 	}
 	
 	/**
 	 * Save the player name and speed into database
 	 */
 	private void saveDBData(){
-		dbWriter.execSQL("update hw2 set name='"+playerName.getText()+"', speed="+ speed);
+		
+		score.setUserName(playerName.getText()+"");
+		score.setCurrentScore(speed);
 	}
 	
 	/**
@@ -165,12 +156,7 @@ public class Account_SetUp_Page extends Activity implements SeekBar.OnSeekBarCha
     				@Override
     				public void onClick(DialogInterface dialog, int which) {
     					saveDBData();
-    					dbWriter.close();
-    					dbReader.close();
     					  //finish();
-    					
-    					
-    					  
     				}
     			})
     			.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

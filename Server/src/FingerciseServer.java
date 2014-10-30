@@ -19,8 +19,8 @@ public class FingerciseServer extends Thread {
 		FingerciseServer myServer = new FingerciseServer();
 		
 		if(myServer !=null) {
-			myServer.start();
 			myServer.gscore = new GamesScore();
+			myServer.start();
 		}
 	}
 	
@@ -40,6 +40,7 @@ public class FingerciseServer extends Thread {
 			
 			// do some reading and writing
 			//writer.write("Fingercise Server");
+			//System.out.println("Server is waiting");
 			String message = "";
 			String line;
 		    while ((line = reader.readLine()) != null) {
