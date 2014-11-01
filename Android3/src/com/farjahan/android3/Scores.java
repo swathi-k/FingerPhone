@@ -61,7 +61,7 @@ public class Scores {
 	public void setUserName(String name) {
 		editor.putString(username, name);
 		editor.commit();
-		registerName(name);
+		registerName();
 		reset();
 		
 	}
@@ -108,23 +108,23 @@ public class Scores {
 		setCurrentScore(0);
 	}
 
-	public String registerName(String name) {
-		String ans = callSocket("register:" + name);
-		Log.i("calling socket data", "calling socket data registerName: " + ans);
+	public String registerName() {
+		String ans = callSocket("register:" + getUserName());
+		Log.i("calling socket data", "client calling socket data registerName(): " + ans);
 		return ans;
 		
 	}
 
 	public String sendGameResult() {
-		String ans = callSocket("result:" + getUserName() + "\t" + getGameName() + "\t"
+		String ans = callSocket("result:" + getUserName() + "," + getGameName() + ","
 				+ getCurrentScore()); 
-		Log.i("calling socket data", "calling socket data sendGameResult(): " + ans);
+		Log.i("calling socket data", "client calling socket data sendGameResult(): " + ans);
 		return ans;
 	}
 
 	public String getStatistics(String playername) {
 		String ans = callSocket("statistics:" + playername); 
-		Log.i("calling socket data", "calling socket data getStatistics(): " + ans);
+		Log.i("calling socket data", "client calling socket data getStatistics(): " + ans);
 		return ans;
 	}
 
@@ -134,7 +134,6 @@ public class Scores {
 	BufferedWriter writer = null;
 	BufferedReader reader =null;
 	String output = "";
-	Log.i("calling socket data", "calling socket data" + socketData);
 	
 	try{
 		socket = new Socket(ip, port);
@@ -146,15 +145,17 @@ public class Scores {
 				new OutputStreamWriter(socket.getOutputStream()));
 		
 		writer.write(socketData);
-		
+		writer.newLine();
 		writer.flush();
 		
 		output = "socket trying";
 		while ((output = reader.readLine()) != null) {
 		    
-			return output;
+			//return output;
 	    }
-		
+		writer.close();
+		reader.close();
+		socket.close();
 	}
 	
 	catch(Exception e){
@@ -162,7 +163,8 @@ public class Scores {
 		return e.getMessage();
 	
 	}
-		return output;
+	
+	return output;
 		
 	}
 
