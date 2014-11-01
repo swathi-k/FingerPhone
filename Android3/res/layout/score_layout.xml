@@ -7,7 +7,9 @@
   android:background="#FFFFFF">
   
   <!--  Screen Design for VIDEOS -->
-  <TextView android:text="@string/dsiplayScore"
+  <TextView
+      		android:id="@+id/resultsStats" 
+      		android:text="@string/dsiplayScore"
   			android:padding="15sp"
   			android:textSize="18sp"
   			android:layout_width="fill_parent"

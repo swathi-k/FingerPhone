@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class Game3_Activity extends Activity {
 	private Runnable run = new Runnable(){
 	    public void run(){
 	        //do something
+	    	
 	    	guess();
 	    	playerguess("");
 	    }
@@ -42,19 +44,11 @@ public class Game3_Activity extends Activity {
 
 		setContentView(R.layout.start_game_portrait);
 			
-		display();
-
 		start();
-		h.postDelayed(run, getGameSpeed());
+		h.postDelayed(run, score.getGameSpeed());
 		
 	}
 
-	
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
-		display();
-	}
 	
 	public void addListenerOnButton() {
 
@@ -68,7 +62,6 @@ public class Game3_Activity extends Activity {
 
 				playerguess("Right");
 				guess();	//right button clicked
-				//h.postDelayed(run, getGameSpeed());
 			}
 
 			
@@ -80,26 +73,24 @@ public class Game3_Activity extends Activity {
 				
 				playerguess("Left");
 				guess();	//left button clicked
-				//h.postDelayed(run, getGameSpeed());
 			}
 		});
 	}
 
 	private void start() {
-			display();
 			addListenerOnButton();
 	}
 
 	private void display() {
-		//display CurrentScore
+		//show CurrentScore
 		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
 		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());
 		
-		//display lives left
+		//show lives left
 		TextView lives = (TextView) findViewById(R.id.LivesLeft);
 		lives.setText(getString(R.string.LivesLeft) + score.getLives());
 		
-		//display game label
+		//show game label
 		TextView game = (TextView) findViewById(R.id.GameLabel);
    		game.setText(getGameLabel());
 	}
@@ -131,9 +122,8 @@ public class Game3_Activity extends Activity {
 	private void guess() {
 		if(keepgoing())
 		{
-			display();
 			changeGameLabel();
-			h.postDelayed(run, getGameSpeed());
+			h.postDelayed(run, score.getGameSpeed());
 		}
 		else
 		{
@@ -154,10 +144,6 @@ public class Game3_Activity extends Activity {
 			return true;
 	}
 
-	private int getGameSpeed() {
-		return 1000;
-	}
-	
 	private String getGameLabel() {
 		return sharedPref.getString(getString(R.string.GameLabel1), "Click on Right");
 	}
@@ -167,6 +153,7 @@ public class Game3_Activity extends Activity {
 			setGameLabel("Click on Right");
 		else
 			setGameLabel("Click on Left");
+		display();
 	}
 	
 	private void setGameLabel(String orien) {

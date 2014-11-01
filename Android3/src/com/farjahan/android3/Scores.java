@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class Scores {
 	
@@ -14,7 +15,7 @@ public class Scores {
 	SharedPreferences.Editor editor;
 	String currentscore;
 	String livescore;
-	String port;
+	int port;
 	String ip;
 	String username;
 	String gamename;
@@ -28,8 +29,8 @@ public class Scores {
 		this.username = "Name";
 		this.gamename = "GameName";
 		this.gamespeed = "Speed";
-		this.port = "7890";
-		this.ip = "";	//this ip
+		this.port = 7890;
+		this.ip = "localhost";	//this ip
 	}
 	
 	public int getCurrentScore() {
@@ -39,6 +40,7 @@ public class Scores {
 	public void setCurrentScore(int score) {
 	   	editor.putInt(currentscore, score);
    		editor.commit();
+   		sendGameResult();
 	}
 
 	public int getLives() {
@@ -57,6 +59,7 @@ public class Scores {
 	public void setUserName(String name) {
 		editor.putString(username, name);
 		reset();
+		registerName(name);
    		editor.commit();
 	}
 	
@@ -103,35 +106,52 @@ public class Scores {
 	}
 	
 	public String registerName(String name) {
+		String output = callSocket("register:" + name);
+		Log.i("calling socket data out was registerd", "calling socket data: output is " + output);
 		
-		return callSocket("register:" + name);
+		return output;
 	}
 
-	public String sendGameResult(String playername, String gamename) {
+	public String sendGameResult() {
+		Log.i("currentscore in game 3", "currentscore in game 3 " + getCurrentScore());
+		return callSocket("result:" + getUserName() + "\t" + getGameName() + "\t" + getCurrentScore());
 		
-		return callSocket("result:" + playername + "\t" + gamename + "\t" + getCurrentScore());
 	}
 	
 	public String getStatistics(String playername) {
 		return callSocket("statistics:" + playername);
 	}
 	
+	@SuppressWarnings("resource")
 	private String callSocket(String socketData) {
 		Socket socket = null;
 		BufferedWriter writer = null;
 		BufferedReader reader =null;
 		String output = null;
+		Log.i("calling socket data", "calling socket data" + socketData);
 		
 		try{
-		
-			socket = new Socket(ip, Integer.parseInt(port));
+			output="error";
+			socket = new Socket(ip, port);
+			output="socket error";
+			
 			reader = new BufferedReader(
 					new InputStreamReader(socket.getInputStream()));
+			output="bufferedreader error";
 			writer = new BufferedWriter(
 					new OutputStreamWriter(socket.getOutputStream()));
+			output="bufferedwriter error";
+			
 			writer.write(socketData);
+			output="write error";
 			writer.flush();
-			output = reader.readLine();
+			output="flush error";
+			
+			while ((output = reader.readLine()) != null) {
+			    
+				return output;
+		    }
+			
 		}
 		catch(Exception e){}
 			return output;

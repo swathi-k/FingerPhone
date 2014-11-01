@@ -52,6 +52,7 @@ public class GameActivity extends Activity
 				handler.postDelayed(gameTimeout, speed);
 			}
 			else{
+				savedscores.setCurrentScore(score);
 				gameOver();
 				
 			}

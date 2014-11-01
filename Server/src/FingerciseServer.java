@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -20,6 +21,7 @@ public class FingerciseServer extends Thread {
 		
 		if(myServer !=null) {
 			myServer.gscore = new GamesScore();
+			System.out.println("Starting thread");
 			myServer.start();
 		}
 	}
@@ -29,7 +31,7 @@ public class FingerciseServer extends Thread {
 		try
 		{
 			ServerSocket server = new ServerSocket(PORT, NUM_CONNECT);
-			
+			System.out.println("Starting run method");
 			Socket client = server.accept();
 			
 			BufferedReader reader = new BufferedReader(
@@ -40,28 +42,29 @@ public class FingerciseServer extends Thread {
 			
 			// do some reading and writing
 			//writer.write("Fingercise Server");
-			//System.out.println("Server is waiting");
 			String message = "";
 			String line;
-		    while ((line = reader.readLine()) != null) {
-		        message +=line;
+			while ((line = reader.readLine()) != null) {
+				message =line;
+				String[] action = message.split(":");
+			    String output = "";
+			    if(action[0].equals("register"))
+			    {
+			    	output = register(action[1]);
+			    }
+			    else if(action[0].equals("results"))
+			    {
+			    	output = results(action[1]);
+			    }
+			    else if(action[0].equals("statistics"))
+			    {
+			    	output = statistics(action[1]);
+			    }
+			    writer.write(output);
+			    writer.flush();
 		    }
 		    
-		    String[] action = message.split(":");
-		    String output = "";
-		    if(action[0].equals("register"))
-		    {
-		    	output = register(action[1]);
-		    }
-		    else if(action[0].equals("results"))
-		    {
-		    	output = results(action[1]);
-		    }
-		    else if(action[0].equals("statistics"))
-		    {
-		    	output = statistics(action[1]);
-		    }
-		    writer.write(output);
+		    
 		}
 		catch(IOException ie)
 		{
@@ -84,7 +87,7 @@ public class FingerciseServer extends Thread {
 		String[] arguments = args.split("\t");
 		if(arguments.length < 3)
 			return "Incorrect message format";
-		
+		System.out.println("Server Works");
 		gscore.update(arguments[0], arguments[1], Integer.parseInt(arguments[2]));
 			
 		return "";
