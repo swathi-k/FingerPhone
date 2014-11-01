@@ -88,7 +88,7 @@ public class Account_SetUp_Page extends Activity implements
 	private void saveDBData() {
 
 		score.setUserName(playerName.getText() + "");
-		score.setCurrentScore(speed);
+		score.setGameSpeed(speed);
 	}
 
 	/**

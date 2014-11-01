@@ -60,9 +60,10 @@ public class Scores {
 
 	public void setUserName(String name) {
 		editor.putString(username, name);
+		editor.commit();
 		registerName(name);
 		reset();
-		editor.commit();
+		
 	}
 
 	public String getGameName() {
@@ -132,27 +133,23 @@ public class Scores {
 	Socket socket = null;
 	BufferedWriter writer = null;
 	BufferedReader reader =null;
-	String output = null;
+	String output = "";
 	Log.i("calling socket data", "calling socket data" + socketData);
 	
 	try{
-		output="error";
 		socket = new Socket(ip, port);
 		
-		output="socket error";
 		
 		reader = new BufferedReader(
 				new InputStreamReader(socket.getInputStream()));
-		output="bufferedreader error";
 		writer = new BufferedWriter(
 				new OutputStreamWriter(socket.getOutputStream()));
-		output="bufferedwriter error";
 		
 		writer.write(socketData);
-		output="write error";
-		writer.flush();
-		output="flush error";
 		
+		writer.flush();
+		
+		output = "socket trying";
 		while ((output = reader.readLine()) != null) {
 		    
 			return output;
@@ -161,6 +158,7 @@ public class Scores {
 	}
 	
 	catch(Exception e){
+		output = "error";
 		return e.getMessage();
 	
 	}
