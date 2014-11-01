@@ -109,22 +109,25 @@ public class Scores {
 	}
 
 	public String registerName() {
+		Log.i("calling socket data", "client calling socket data registerName(): " + getUserName());
 		String ans = callSocket("register:" + getUserName());
-		Log.i("calling socket data", "client calling socket data registerName(): " + ans);
+		Log.i("calling socket data", "server returns calling socket data registerName(): " + ans);
 		return ans;
 		
 	}
 
 	public String sendGameResult() {
+		Log.i("calling socket data", "client returns calling socket data sendGameResult(): " + getUserName() + " gameName: " + getGameName());
 		String ans = callSocket("result:" + getUserName() + "," + getGameName() + ","
 				+ getCurrentScore()); 
-		Log.i("calling socket data", "client calling socket data sendGameResult(): " + ans);
+		Log.i("calling socket data", "server returns calling socket data sendGameResult(): " + ans);
 		return ans;
 	}
 
 	public String getStatistics(String playername) {
+		Log.i("calling socket data", "client calling socket data getStatistics(): " + playername);
 		String ans = callSocket("statistics:" + playername); 
-		Log.i("calling socket data", "client calling socket data getStatistics(): " + ans);
+		Log.i("calling socket data", "server returns calling socket data getStatistics(): " + ans);
 		return ans;
 	}
 

@@ -61,6 +61,7 @@ public class FingerciseServer extends Thread {
 			    	output = statistics(action[1]);
 			    }
 			    writer.write(output);
+			    writer.newLine(); //HERE!!!!!!
 			    writer.flush();
 		    }
 		    
@@ -84,10 +85,10 @@ public class FingerciseServer extends Thread {
 	private String results(String args) {
 		// TODO Auto-generated method stub
 		
-		String[] arguments = args.split("\t");
+		String[] arguments = args.split(",");
 		if(arguments.length < 3)
 			return "Incorrect message format";
-		System.out.println("Server Works");
+		
 		gscore.update(arguments[0], arguments[1], Integer.parseInt(arguments[2]));
 			
 		return "";
