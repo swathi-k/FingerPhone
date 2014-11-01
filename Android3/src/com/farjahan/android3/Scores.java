@@ -155,7 +155,7 @@ public class Scores {
 		output = "socket trying";
 		while ((output = reader.readLine()) != null) {
 		    
-			//return output;
+			return output;
 	    }
 		writer.close();
 		reader.close();
