@@ -1,179 +1,233 @@
 package com.farjahan.android3;
 
+/**
+ * 
+ * @author Farjahan Hossain*/
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Game3_Activity extends Activity {
-	SharedPreferences sharedPref;
-	SharedPreferences.Editor editor;
-	final Context context = this;
-	private Handler h = new Handler();
-	Button right_button;
-	Button left_button;
-	Scores score;
-	String username;
-	private Runnable run = new Runnable(){
-	    public void run(){
-	        //do something
-	    	guess();
-	    	playerguess("");
-	    }
+/* Game3_Activity is 3rd game class. Game 3 matches is turn off and on light bulb.
+ * 
+ *  In this project some code are used from hw2 solution given by
+ *  professor Chris Pollett
+ */
+
+public class Game3_Activity extends Activity implements OnClickListener {
+	final int ON = 0;
+	final int OFF = 1;
+	private int lives;
+	private int score;
+	private int highScore;
+	private String Title; // 0-Portrait, 1-Landscape
+	private int speed; // million second
+	private TextView textLives;
+	private TextView textScore;
+	private TextView textOrientation;
+	private boolean hitting; // true: the player click a right Orientation, else
+
+	private boolean imageValue;
+	// false
+	private boolean clickDone; // click the "I'm here" button or not
+	Scores savedscores;
+
+	private Handler handler = new Handler();
+
+	/**
+	 * To start play a game
+	 */
+	private Runnable gamePlay = new Runnable() {
+
+		@Override
+		public void run() {
+			if (lives > 0) {
+				// reset
+				clickDone = false;
+				hitting = false;
+				Title = getRandomOrientation();
+				showMessage();
+				// wait for time out
+				handler.postDelayed(gameTimeout, speed);
+			} else {
+				gameOver();
+			}
+		}
+
 	};
-	    
-	@Override 
-	protected void onCreate(Bundle savedInstanceState) { 
-		super.onCreate(savedInstanceState);
-		sharedPref = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
-		editor = sharedPref.edit();
-		
-			
-		score = new Scores(getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE).edit());
-		
-		score.setGameName("Game3");
 
-		setContentView(R.layout.start_game_portrait);
-			
-		display();
+	/**
+	 * Handle the game time out
+	 */
+	private Runnable gameTimeout = new Runnable() {
 
-		start();
-		h.postDelayed(run, getGameSpeed());
-		
-	}
+		@Override
+		public void run() {
+			if (!clickDone) {
+				// the user doesn't click the button
+				clickDone = true; // assume player click since time out
+				lives--;
+				showMessage();
+				gameStart();
+			}
+		}
 
-	
+	};
+
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-	    super.onConfigurationChanged(newConfig);
-		display();
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_game_3);
+		init();
+		gameStart();
 	}
-	
-	public void addListenerOnButton() {
 
-		right_button = (Button) findViewById(R.id.RightButton);
-		left_button = (Button) findViewById(R.id.LeftButton);
-		right_button.setOnClickListener(new OnClickListener() {
+	/**
+	 * Initialize
+	 */
+	private void init() {
+		textScore = (TextView) findViewById(R.id.game3Score3);
+		textLives = (TextView) findViewById(R.id.game3lives3);
+		textOrientation = (TextView) findViewById(R.id.game3TextView3);
+		Button button1 = (Button) findViewById(R.id.RightButton);
+		button1.setOnClickListener(this);
+		// initialize variable
+		lives = getResources().getInteger(R.integer.max_lives);
+		score = 0;
+		highScore = 0;
+		// orientation=0;
+		speed = getResources().getInteger(R.integer.default_game_speed);
+		hitting = false;
+		// load highScore, speed from database
+		savedscores = new Scores(getSharedPreferences("MyPREFERENCES",
+				Context.MODE_PRIVATE), getSharedPreferences("MyPREFERENCES",
+				Context.MODE_PRIVATE).edit());
 
-			//@Override
-			public void onClick(View arg0) {
+		speed = savedscores.getGameSpeed();
+		savedscores.setGameName("Game3");
+	}
 
+	/**
+	 * Start the game
+	 */
+	private void gameStart() {
+		// wait for 0.7 second to start a new game
+		handler.postDelayed(gamePlay, 700);
+	}
 
-				playerguess("Right");
-				guess();	//right button clicked
-				//h.postDelayed(run, getGameSpeed());
+	/**
+	 * The game over save data load game_over activity
+	 */
+	private void gameOver() {
+
+		savedscores.setCurrentScore(score);
+
+		Intent i = new Intent(this, GameOver.class);
+		startActivity(i);
+		finish();
+	}
+
+	/**
+	 * Generate a random orientation
+	 * 
+	 * @return an integer (0-Portrait, 1-Landscape)
+	 */
+	/*
+	 * private int getRandomOrientation(){ //0-Portrait, 1-Landscape Random
+	 * random=new Random(); return random.nextInt(1000)%2;
+	 * 
+	 * 
+	 * }
+	 */
+
+	private String getRandomOrientation() {
+		final String[] arr = { "ON", "OFF" };
+		Random random = new Random();
+		final int select = random.nextInt(arr.length);
+		String result = arr[select];
+		return result;
+
+	}
+
+	/**
+	 * Show the message and orientation on screen
+	 */
+	private void showMessage() {
+		textScore.setText(getString(R.string.text_score3) + " " + score);
+		textLives.setText(getString(R.string.text_lives3) + " " + lives);
+		ImageView view = (ImageView) findViewById(R.id.offBlub);
+		if (hitting) {
+			// don't show textOrientation
+			textOrientation.setText("");
+		} else {
+			if (Title.equals("ON")) {
+				textOrientation.setText(R.string.text_lightOn);
+				view.setImageResource(R.drawable.blub);
+				imageValue = true;
+			} else {
+				textOrientation.setText(R.string.text_lightOff);
+				view.setImageResource(R.drawable.trun_on_blub);
+				imageValue = true;
 			}
+			if (!clickDone)
+				textOrientation.setTextColor(Color.BLACK); // new game
+			else
+				textOrientation.setTextColor(Color.RED); // miss, warm the
+															// player
+		}
 
-			
-		});
-		left_button.setOnClickListener(new OnClickListener() {
+	}
 
-			//@Override
-			public void onClick(View arg0) {
-				
-				playerguess("Left");
-				guess();	//left button clicked
-				//h.postDelayed(run, getGameSpeed());
+	/*
+	 * handle the case coming from thing on our Activity with id button
+	 */
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		/*
+		 * handle the case coming from thing on our Activity with id button
+		 */
+		case R.id.RightButton:
+			if (!clickDone) {
+				clickDone = true;
+				ImageView view = (ImageView) findViewById(R.id.offBlub);
+				TextView blubTitle = (TextView) findViewById(R.id.blubTitle);
+				handler.removeCallbacks(gameTimeout);
+
+				if (Title.equals("ON") && imageValue == true) {
+					view.setImageResource(R.drawable.trun_on_blub);
+					blubTitle.setText(R.string.Off);
+					hitting = true;
+				} else if (Title.equals("OFF") && imageValue == true) {
+					view.setImageResource(R.drawable.blub);
+					blubTitle.setText(R.string.On);
+					hitting = true;
+				}
+
+				if (hitting) {
+					score++;
+					if (score > highScore) {
+						highScore = score;
+					}
+				} else {
+					lives--;
+				}
+				showMessage();
+				// restart the game
+				gameStart();
 			}
-		});
-	}
-
-	private void start() {
-			display();
-			addListenerOnButton();
-	}
-
-	private void display() {
-		//display CurrentScore
-		TextView currentScore = (TextView) findViewById(R.id.CurrentScore);
-		currentScore.setText(getString(R.string.CurrentScore) + score.getCurrentScore());
-		
-		//display lives left
-		TextView lives = (TextView) findViewById(R.id.LivesLeft);
-		lives.setText(getString(R.string.LivesLeft) + score.getLives());
-		
-		//display game label
-		TextView game = (TextView) findViewById(R.id.GameLabel);
-   		game.setText(getGameLabel());
-	}
-
-	private void playerguess(String guess)
-	{
-		
-		if(getInstruction() && guess.equals("right"))
-		{
-			score.incCurrentScore();
-		}
-		else if (!getInstruction() && guess.equals("left"))
-		{
-			score.incCurrentScore();
-		}
-		else
-			score.decLives();
-	}
-	
-	private boolean getInstruction() {
-		//@TODO change "Portrait" to enum
-		if(getGameLabel().equals("Click on Right"))
-			return true;
-		else
-			return false;
-	}
-
-
-	private void guess() {
-		if(keepgoing())
-		{
-			display();
-			changeGameLabel();
-			h.postDelayed(run, getGameSpeed());
-		}
-		else
-		{
-			score.savescores();
-			//start intent GameOver
-			score.reset();
-			Intent intent = new Intent(context, GameOver.class);
-			startActivity(intent);
-			finish();
+			break;
 		}
 	}
 
-
-	private boolean keepgoing() {
-		if(score.getLives() < 1)
-			return false;
-		else
-			return true;
-	}
-
-	private int getGameSpeed() {
-		return 1000;
-	}
-	
-	private String getGameLabel() {
-		return sharedPref.getString(getString(R.string.GameLabel1), "Click on Right");
-	}
-	
-	private void changeGameLabel() {
-		if( Math.random() < 0.5)
-			setGameLabel("Click on Right");
-		else
-			setGameLabel("Click on Left");
-	}
-	
-	private void setGameLabel(String orien) {
-	   	editor.putString(getString(R.string.GameLabel1), orien);
-   		editor.commit();
-   		TextView game = (TextView) findViewById(R.id.GameLabel);
-   		game.setText(orien);
-	}
-	
 }

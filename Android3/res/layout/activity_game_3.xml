@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/start_game_portrait"
+    tools:context="cs175.skotturu.dizphone.MainActivity">
+    <TextView
+        android:id="@+id/game3Score3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/text_score3" />
+
+    <TextView
+        android:id="@+id/game3HighScore3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/text_high_score3" />
+
+    <TextView
+        android:id="@+id/game3lives3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/text_lives3" />
+
+    <TextView
+        android:id="@+id/game3TextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/game3HighScore3"
+        android:layout_below="@+id/game3HighScore3"
+        android:layout_marginTop="75dp"
+        android:text="@string/game3TextView3" />
+
+    <TextView
+        android:id="@+id/blubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/game3TextView3"
+        android:layout_below="@+id/offBlub"
+        android:layout_marginTop="39dp"
+        android:text="@string/blubTitle" />
+
+    <Button
+        android:id="@+id/RightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/blubTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:text="@string/RightButton" />
+
+    <ImageView
+        android:id="@+id/offBlub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/default_header3"
+   
+        />
+
+</RelativeLayout>

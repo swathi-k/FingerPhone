@@ -1633,24 +1633,26 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020030;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
-        public static final int brush_teeth=0x7f020033;
-        public static final int ic_launcher=0x7f020034;
-        public static final int icon=0x7f020035;
-        public static final int landscape_wake_up=0x7f020036;
-        public static final int photos_gray=0x7f020037;
-        public static final int portrait_wake_up=0x7f020038;
-        public static final int songs_gray=0x7f020039;
-        public static final int spike=0x7f02003a;
-        public static final int videos_gray=0x7f02003b;
-        public static final int videos_white=0x7f02003c;
-        public static final int wake_up=0x7f02003d;
+        public static final int blub=0x7f020033;
+        public static final int brush_teeth=0x7f020034;
+        public static final int ic_launcher=0x7f020035;
+        public static final int icon=0x7f020036;
+        public static final int landscape_wake_up=0x7f020037;
+        public static final int photos_gray=0x7f020038;
+        public static final int portrait_wake_up=0x7f020039;
+        public static final int songs_gray=0x7f02003a;
+        public static final int spike=0x7f02003b;
+        public static final int trun_on_blub=0x7f02003c;
+        public static final int videos_gray=0x7f02003d;
+        public static final int videos_white=0x7f02003e;
+        public static final int wake_up=0x7f02003f;
     }
     public static final class id {
-        public static final int CurrentScore=0x7f050055;
-        public static final int GameLabel=0x7f050056;
-        public static final int LeftButton=0x7f050057;
-        public static final int LivesLeft=0x7f050054;
-        public static final int RightButton=0x7f050053;
+        public static final int CurrentScore=0x7f05005c;
+        public static final int GameLabel=0x7f05005d;
+        public static final int LeftButton=0x7f05005e;
+        public static final int LivesLeft=0x7f05005b;
+        public static final int RightButton=0x7f050057;
         public static final int action_bar=0x7f050033;
         public static final int action_bar_activity_content=0x7f05001a;
         public static final int action_bar_container=0x7f050032;
@@ -1664,10 +1666,11 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f050030;
         public static final int action_mode_bar_stub=0x7f05002f;
         public static final int action_mode_close_button=0x7f050022;
-        public static final int action_settings=0x7f050058;
+        public static final int action_settings=0x7f05005f;
         public static final int activity_chooser_view_content=0x7f050023;
         public static final int always=0x7f05000d;
         public static final int beginning=0x7f050012;
+        public static final int blubTitle=0x7f050055;
         public static final int bottom=0x7f050016;
         public static final int button1=0x7f050042;
         public static final int checkbox=0x7f05002b;
@@ -1682,19 +1685,23 @@ containing a value of this type.
         public static final int end=0x7f050014;
         public static final int expand_activities_button=0x7f050024;
         public static final int expanded_menu=0x7f05002a;
-        public static final int game1=0x7f050052;
+        public static final int game1=0x7f05005a;
         public static final int game1Button1=0x7f050049;
         public static final int game1TextView1=0x7f050046;
         public static final int game1TextView3=0x7f050047;
         public static final int game1TextView4=0x7f050048;
-        public static final int game2=0x7f050051;
+        public static final int game2=0x7f050059;
         public static final int game2HighScore2=0x7f05004e;
         public static final int game2Score2=0x7f05004a;
         public static final int game2TextView2=0x7f05004c;
         public static final int game2button2=0x7f05004f;
         public static final int game2imageView=0x7f05004d;
         public static final int game2lives2=0x7f05004b;
-        public static final int game3=0x7f050050;
+        public static final int game3=0x7f050058;
+        public static final int game3HighScore3=0x7f050052;
+        public static final int game3Score3=0x7f050051;
+        public static final int game3TextView3=0x7f050054;
+        public static final int game3lives3=0x7f050053;
         public static final int home=0x7f050017;
         public static final int homeAsUp=0x7f050007;
         public static final int icon=0x7f050028;
@@ -1706,6 +1713,7 @@ containing a value of this type.
         public static final int never=0x7f05000b;
         public static final int none=0x7f050004;
         public static final int normal=0x7f050001;
+        public static final int offBlub=0x7f050056;
         public static final int progress_circular=0x7f05001e;
         public static final int progress_horizontal=0x7f05001f;
         public static final int radio=0x7f05002d;
@@ -1725,6 +1733,7 @@ containing a value of this type.
         public static final int showHome=0x7f050006;
         public static final int showTitle=0x7f050008;
         public static final int split_action_bar=0x7f05001b;
+        public static final int start_game_portrait=0x7f050050;
         public static final int submit_area=0x7f05003e;
         public static final int tabMode=0x7f050003;
         public static final int textView1=0x7f050044;
@@ -1798,17 +1807,19 @@ containing a value of this type.
         public static final int accout_setup_layout=0x7f030017;
         public static final int activity_game=0x7f030018;
         public static final int activity_game_2=0x7f030019;
-        public static final int activity_game_over=0x7f03001a;
-        public static final int activity_main=0x7f03001b;
-        public static final int game_layout=0x7f03001c;
-        public static final int score_layout=0x7f03001d;
-        public static final int start_game_portrait=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int activity_game_3=0x7f03001a;
+        public static final int activity_game_over=0x7f03001b;
+        public static final int activity_main=0x7f03001c;
+        public static final int game_layout=0x7f03001d;
+        public static final int score_layout=0x7f03001e;
+        public static final int start_game_portrait=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
     }
     public static final class string {
+        public static final int Amath=0x7f0a0042;
         /**  Game 3 
          */
         public static final int CurrentScore=0x7f0a0031;
@@ -1816,6 +1827,8 @@ containing a value of this type.
         public static final int HighScore=0x7f0a0032;
         public static final int LeftButton=0x7f0a0035;
         public static final int LivesLeft=0x7f0a0033;
+        public static final int Off=0x7f0a0041;
+        public static final int On=0x7f0a0040;
         public static final int RightButton=0x7f0a0034;
         public static final int Upsidedown=0x7f0a0028;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1873,19 +1886,27 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000d;
         public static final int action_settings=0x7f0a0011;
         public static final int app_name=0x7f0a000f;
+        public static final int blubTitle=0x7f0a003f;
         public static final int default_header=0x7f0a0022;
+        public static final int default_header3=0x7f0a003b;
         /**  default 
          */
         public static final int default_name=0x7f0a002a;
         public static final int dsiplayScore=0x7f0a001b;
+        public static final int english=0x7f0a0043;
         public static final int game2=0x7f0a0020;
         public static final int game2TextView=0x7f0a001c;
         public static final int game2button2=0x7f0a0017;
         public static final int game3=0x7f0a0021;
+        public static final int game3TextView3=0x7f0a003e;
         public static final int hello_world=0x7f0a0010;
         public static final int landscape=0x7f0a0029;
         public static final int lastName=0x7f0a0018;
         public static final int notBrushed=0x7f0a0019;
+        /**       Statistics 
+         */
+        public static final int showStatistics=0x7f0a0037;
+        public static final int subject=0x7f0a0044;
         public static final int text_Brush=0x7f0a0030;
         public static final int text_Portrait=0x7f0a002e;
         public static final int text_Spike=0x7f0a002f;
@@ -1893,10 +1914,14 @@ containing a value of this type.
         public static final int text_game_speed=0x7f0a0013;
         public static final int text_high_score=0x7f0a0015;
         public static final int text_high_score2=0x7f0a0025;
+        public static final int text_high_score3=0x7f0a0039;
         public static final int text_i_am_there=0x7f0a0023;
         public static final int text_landscape=0x7f0a002d;
+        public static final int text_lightOff=0x7f0a003c;
+        public static final int text_lightOn=0x7f0a003d;
         public static final int text_lives=0x7f0a0016;
         public static final int text_lives2=0x7f0a0026;
+        public static final int text_lives3=0x7f0a003a;
         public static final int text_player_name=0x7f0a0012;
         /**  button 
          */
@@ -1904,6 +1929,7 @@ containing a value of this type.
         public static final int text_save_question=0x7f0a002c;
         public static final int text_score=0x7f0a0014;
         public static final int text_score2=0x7f0a0024;
+        public static final int text_score3=0x7f0a0038;
         public static final int text_settings=0x7f0a001e;
         public static final int text_start_game=0x7f0a001f;
         public static final int title=0x7f0a0027;
