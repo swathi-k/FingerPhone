@@ -2,9 +2,11 @@ package com.farjahan.android3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -30,7 +32,7 @@ public class Scores {
 		this.gamename = "GameName";
 		this.gamespeed = "Speed";
 		this.port = 7890;
-		this.ip = "localhost"; // this ip
+		this.ip = "192.168.15.9"; // this ip
 	}
 
 	public int getCurrentScore() {
@@ -106,18 +108,23 @@ public class Scores {
 	}
 
 	public String registerName(String name) {
-
-		return callSocket("register:" + name);
+		String ans = callSocket("register:" + name);
+		Log.i("calling socket data", "calling socket data registerName: " + ans);
+		return ans;
+		
 	}
 
 	public String sendGameResult() {
-
-		return callSocket("result:" + getUserName() + "\t" + getGameName() + "\t"
-				+ getCurrentScore());
+		String ans = callSocket("result:" + getUserName() + "\t" + getGameName() + "\t"
+				+ getCurrentScore()); 
+		Log.i("calling socket data", "calling socket data sendGameResult(): " + ans);
+		return ans;
 	}
 
 	public String getStatistics(String playername) {
-		return callSocket("statistics:" + playername);
+		String ans = callSocket("statistics:" + playername); 
+		Log.i("calling socket data", "calling socket data getStatistics(): " + ans);
+		return ans;
 	}
 
 	@SuppressWarnings("resource")
@@ -131,6 +138,7 @@ public class Scores {
 	try{
 		output="error";
 		socket = new Socket(ip, port);
+		
 		output="socket error";
 		
 		reader = new BufferedReader(
@@ -151,8 +159,13 @@ public class Scores {
 	    }
 		
 	}
-	catch(Exception e){}
+	
+	catch(Exception e){
+		return e.getMessage();
+	
+	}
 		return output;
+		
 	}
 
 
