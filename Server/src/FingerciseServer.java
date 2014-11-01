@@ -44,7 +44,8 @@ public class FingerciseServer extends Thread {
 			//writer.write("Fingercise Server");
 			String message = "";
 			String line;
-			while ((line = reader.readLine()) != null) {
+			while (true) {
+				if((line = reader.readLine()) != null) {
 				message =line;
 				String[] action = message.split(":");
 			    String output = "";
@@ -63,6 +64,7 @@ public class FingerciseServer extends Thread {
 			    writer.write(output);
 			    writer.newLine(); //HERE!!!!!!
 			    writer.flush();
+				}
 		    }
 		    
 		    

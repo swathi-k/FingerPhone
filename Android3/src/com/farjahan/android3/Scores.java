@@ -18,7 +18,7 @@ public class Scores {
 	String currentscore;
 	String livescore;
 	int port;
-	String ip;
+	String ip = "192.168.15.9"; // this ip
 	String username;
 	String gamename;
 	String gamespeed;
@@ -32,7 +32,6 @@ public class Scores {
 		this.gamename = "GameName";
 		this.gamespeed = "Speed";
 		this.port = 7890;
-		this.ip = "192.168.15.9"; // this ip
 	}
 
 	public int getCurrentScore() {
@@ -153,22 +152,22 @@ public class Scores {
 		writer.flush();
 		
 		output = "socket trying";
-		while ((output = reader.readLine()) != null) {
+		while (true) {
+			
+			if((output = reader.readLine()) != null) {
 		    
 			return output;
-	    }
-		writer.close();
-		reader.close();
-		socket.close();
+			}
+		}
+//		writer.close();
+//		reader.close();
+//		socket.close();
 	}
-	
 	catch(Exception e){
 		output = "error";
 		return e.getMessage();
 	
 	}
-	
-	return output;
 		
 	}
 
