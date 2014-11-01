@@ -1685,7 +1685,7 @@ containing a value of this type.
         public static final int end=0x7f050014;
         public static final int expand_activities_button=0x7f050024;
         public static final int expanded_menu=0x7f05002a;
-        public static final int game1=0x7f05005a;
+        public static final int game1=0x7f050058;
         public static final int game1Button1=0x7f050049;
         public static final int game1TextView1=0x7f050046;
         public static final int game1TextView3=0x7f050047;
@@ -1697,7 +1697,7 @@ containing a value of this type.
         public static final int game2button2=0x7f05004f;
         public static final int game2imageView=0x7f05004d;
         public static final int game2lives2=0x7f05004b;
-        public static final int game3=0x7f050058;
+        public static final int game3=0x7f05005a;
         public static final int game3HighScore3=0x7f050052;
         public static final int game3Score3=0x7f050051;
         public static final int game3TextView3=0x7f050054;

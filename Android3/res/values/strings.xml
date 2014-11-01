@@ -19,9 +19,9 @@
     <!-- button -->
 	<string name="text_return">Return</string>
 	<string name="text_settings">Settings</string>
-	<string name="text_start_game">Light Blub</string>
+	<string name="text_start_game">Orientation</string>
 	<string name="game2">Image</string>
-	<string name="game3">Orientation</string>
+	<string name="game3">Light Blub</string>
 	<string name="default_header"> Hedaer image</string>
 	<string name="text_i_am_there">I\'m there</string>
 	<string name="text_score2">Score:</string>
