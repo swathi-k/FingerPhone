@@ -3,6 +3,7 @@ package com.farjahan.android3;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 /*** ScorePage display user game score statistics ****/
@@ -24,8 +25,8 @@ public class ScorePage extends Activity {
 		/*********Display user name********/
 		showStatistics.setText(user);
 
-		// String gameStatistics = socket.getStatistics(user);
-		// showStatistics.setText(gameStatistics);
-		// Log.i("Details of ", "game " + gameStatistics);
+		 String gameStatistics = socket.getStatistics(user);
+		 showStatistics.setText(gameStatistics);
+		 Log.i("Details of ", "game " + gameStatistics);
 	}
 }
