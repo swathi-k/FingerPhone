@@ -105,7 +105,8 @@ public class Scores {
 
 	public void reset() {
 		setLives(3);
-		setCurrentScore(0);
+		editor.putInt(currentscore, 0);
+		editor.commit();
 	}
 
 	public String registerName() {
